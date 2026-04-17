@@ -9,7 +9,7 @@ import (
 
 type ReactTest struct {
 	r         Reactor
-	cells     map[string]Cell
+	cells     map[string]cell
 	cancelers map[string]Canceler
 	callbacks map[string]int
 }
@@ -17,7 +17,7 @@ type ReactTest struct {
 func NewReactTest() ReactTest {
 	return ReactTest{
 		r:         New(),
-		cells:     make(map[string]Cell),
+		cells:     make(map[string]cell),
 		cancelers: make(map[string]Canceler),
 		callbacks: make(map[string]int),
 	}
@@ -69,7 +69,7 @@ func (rt ReactTest) Operate(op Operation) error {
 		}
 	case "AddCallback":
 		computeCell := rt.cells[op.cell].(ComputeCell)
-		rt.cancelers[op.name] = computeCell.AddCallback(func(x int) {rt.callbacks[op.name] = x})
+		rt.cancelers[op.name] = computeCell.AddCallback(func(x int) { rt.callbacks[op.name] = x })
 	case "Cancel":
 		rt.cancelers[op.name].Cancel()
 	case "Value":

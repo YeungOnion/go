@@ -1,21 +1,24 @@
 package react
 
-// Define reactor, cell and canceler types here.
-// These types will implement the Reactor, Cell and Canceler interfaces, respectively.
+// Define types that will provide the Reactor, cell, and Canceler interface here.
+// The prepopulated code assumes types
+// canceler <- Canceler
+// myCell <- cell, ComputeCell, InputCell
+// reactor <- Reactor
 
 func (c *canceler) Cancel() {
 	panic("Please implement the Cancel function")
 }
 
-func (c *cell) Value() int {
+func (c *myCell) Value() int {
 	panic("Please implement the Value function")
 }
 
-func (c *cell) SetValue(value int) {
+func (c *myCell) SetValue(value int) {
 	panic("Please implement the SetValue function")
 }
 
-func (c *cell) AddCallback(callback func(int)) Canceler {
+func (c *myCell) AddCallback(callback func(int)) Canceler {
 	panic("Please implement the AddCallback function")
 }
 
@@ -27,10 +30,10 @@ func (r *reactor) CreateInput(initial int) InputCell {
 	panic("Please implement the CreateInput function")
 }
 
-func (r *reactor) CreateCompute1(dep Cell, compute func(int) int) ComputeCell {
+func (r *reactor) CreateCompute1(dep cell, compute func(int) int) ComputeCell {
 	panic("Please implement the CreateCompute1 function")
 }
 
-func (r *reactor) CreateCompute2(dep1, dep2 Cell, compute func(int, int) int) ComputeCell {
+func (r *reactor) CreateCompute2(dep1, dep2 cell, compute func(int, int) int) ComputeCell {
 	panic("Please implement the CreateCompute2 function")
 }

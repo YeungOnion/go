@@ -1,6 +1,6 @@
 package react
 
-// A Reactor manages linked cells.
+// A reactor manages linked cells.
 type Reactor interface {
 	// CreateInput creates an input cell linked into the reactor
 	// with the given initial value.
@@ -9,16 +9,16 @@ type Reactor interface {
 	// CreateCompute1 creates a compute cell which computes its value
 	// based on one other cell. The compute function will only be called
 	// if the value of the passed cell changes.
-	CreateCompute1(Cell, func(int) int) ComputeCell
+	CreateCompute1(cell, func(int) int) ComputeCell
 
 	// CreateCompute2 is like CreateCompute1, but depending on two cells.
 	// The compute function will only be called if the value of any of the
 	// passed cells changes.
-	CreateCompute2(Cell, Cell, func(int, int) int) ComputeCell
+	CreateCompute2(cell, cell, func(int, int) int) ComputeCell
 }
 
-// A Cell is conceptually a holder of a value.
-type Cell interface {
+// A cell is conceptually a holder of a value.
+type cell interface {
 	// Value returns the current value of the cell.
 	Value() int
 }
@@ -26,7 +26,7 @@ type Cell interface {
 // An InputCell has a changeable value, changing the value triggers updates to
 // other cells.
 type InputCell interface {
-	Cell
+	cell
 
 	// SetValue sets the value of the cell.
 	SetValue(int)
@@ -35,7 +35,7 @@ type InputCell interface {
 // A ComputeCell always computes its value based on other cells and can
 // call callbacks upon changes.
 type ComputeCell interface {
-	Cell
+	cell
 
 	// AddCallback adds a callback which will be called when the value changes.
 	// It returns a Canceler which can be used to remove the callback.
